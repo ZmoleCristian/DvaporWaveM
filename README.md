@@ -1,9 +1,10 @@
-# Trag Date - dwm
+# Trag Date - neo-dwm
 ## FAQ
 
 > What are the bindings?
 
 Check out [config.h](config.h).
+
 Or read about in Luke's manual:
 Press <kbd>META+F1</kbd> to view it in dwm (zathura is required for that binding).
 I haven't kept `man dwm`/`dwm.1` updated though. PRs welcome on that, lol.
