@@ -7,6 +7,7 @@
 
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
+static const int user_bh      = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static unsigned int snap      = 32;       /* snap pixel */
 static unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static unsigned int gappiv    = 10;       /* vert inner gap between windows */
