@@ -1,4 +1,4 @@
-.gitignore
+.*
 *.orig
 *.rej
 larbs.pdf

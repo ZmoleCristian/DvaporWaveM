@@ -1,19 +1,18 @@
-# Luke's build of dwm
-
+# Trag Date - dwm
 ## FAQ
 
 > What are the bindings?
 
-This is suckless, mmmbud, the source code is the documentation! Check out [config.h](config.h).
-
-Okay, okay, actually I keep a readme in `larbs.mom` for my whole system, including the binds here.
-Press <kbd>super+F1</kbd> to view it in dwm (zathura is required for that binding).
+Check out [config.h](config.h).
+Or read about in Luke's manual:
+Press <kbd>META+F1</kbd> to view it in dwm (zathura is required for that binding).
 I haven't kept `man dwm`/`dwm.1` updated though. PRs welcome on that, lol.
 
 ## Patches and features
 
-- [Clickable statusbar](https://dwm.suckless.org/patches/statuscmd/) with my build of [dwmblocks](https://github.com/lukesmithxyz/dwmblocks).
+- [Clickable statusbar](https://dwm.suckless.org/patches/statuscmd/) with Luke's build of [dwmblocks](https://github.com/lukesmithxyz/dwmblocks).
 - Reads [xresources](https://dwm.suckless.org/patches/xresources/) colors/variables (i.e. works with `pywal`, etc.).
+- [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/) hides tags with no windows.
 - scratchpad: Accessible with <kbd>mod+shift+enter</kbd>.
 - New layouts: bstack, fibonacci, deck, centered master and more. All bound to keys <kbd>super+(shift+)t/y/u/i</kbd>.
 - True fullscreen (<kbd>super+f</kbd>) and prevents focus shifting.
