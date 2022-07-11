@@ -6,26 +6,26 @@
 #define BROWSER "brave"
 
 /* appearance */
-static const int vertpad = 5;       /* vertical padding of bar */
-static const int sidepad = 5;       /* horizontal padding of bar */
-static unsigned int borderpx = 4;        /* border pixel of windows */
-static const int user_bh = 50;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int vertpad = 10;       /* vertical padding of bar */
+static const int sidepad = 25;       /* horizontal padding of bar */
+static unsigned int borderpx = 5;        /* border pixel of windows */
+static const int user_bh = 44;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static unsigned int snap = 5;       /* snap pixel */
 static unsigned int gappih = 10;       /* horiz inner gap between windows */
 static unsigned int gappiv = 15;       /* vert inner gap between windows */
-static unsigned int gappoh = 10;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov = 25;       /* vert outer gap between windows and screen edge */
+static unsigned int gappoh = 5;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov = 10;       /* vert outer gap between windows and screen edge */
 static int swallowfloating = 0;        /* 1 means swallow floating windows by default */
-static int smartgaps = 0;        /* 1 means no outer gap when there is only one window */
+static int smartgaps = 1;        /* 1 means no outer gap when there is only one window */
 static int showbar = 1;        /* 0 means no bar */
 static int topbar = 0;        /* 0 means bottom bar */
 
 
 static char *fonts[] = {
-        "monospace:size=14",
-        "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true",
-        "Font Awesome 6 Free:style=Regular:pixelsize=28:antialias=true:autohint=true",
-        "Font Awesome 6 Brands:pixelsize=28:antialias=true:autohint=true",
+        "terminus:size=16:style=Bold",
+        "Ubuntu Mono Nerd Font:size=30",
+        "Font Awesome 6 Free:style=Regular:pixelsize=32:antialias=true:autohint=true",
+        "Font Awesome 6 Brands:pixelsize=32:antialias=true:autohint=true",
         "Font Awesome:style=Regular:pixelsize=32:antialias=true:autohint=true",
 };
 
@@ -54,7 +54,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = {"", "", "🗪", "", "", "", "7", "8", "9"};
+static const char *tags[] = {"", "", "🗪", "", "懶", "", "7", "8", "9"};
 
 static const Rule rules[] = {
         /* xprop(1):
@@ -117,7 +117,10 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *termcmd[] = {TERMINAL, NULL};
-
+/* per tag commands for tagspawn function */
+static const char **const tagcommands[LENGTH(tags)] = {
+        [0] = termcmd, /* first tag */
+};
 /*
  * Xresources preferences to load at startup
  */
@@ -153,6 +156,7 @@ static Key keys[] = {
         /* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
         {MODKEY, XK_grave, spawn, {.v = (const char *[]) {"dmenuunicode", NULL}}},
         /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
+
         TAGKEYS(XK_1, 0)
         TAGKEYS(XK_2, 1)
         TAGKEYS(XK_3, 2)
@@ -162,6 +166,7 @@ static Key keys[] = {
         TAGKEYS(XK_7, 6)
         TAGKEYS(XK_8, 7)
         TAGKEYS(XK_9, 8)
+        {MODKEY | ControlMask, XK_Return, tagspawn, {0}},
         {MODKEY, XK_0, view, {.ui = ~0}},
         {MODKEY | ShiftMask, XK_0, tag, {.ui = ~0}},
         {MODKEY, XK_minus, spawn, SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)")},

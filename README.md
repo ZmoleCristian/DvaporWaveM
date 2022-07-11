@@ -11,6 +11,7 @@ I haven't kept `man dwm`/`dwm.1` updated though. PRs welcome on that, lol.
 
 ## Patches and features
 - Adjust bar height with [bar height](https://dwm.suckless.org/patches/bar_height/) patch  
+- Spawn default tag apps with [tag spawn](https://dwm.suckless.org/patches/tagspawn/) patch  
 - [Clickable statusbar](https://dwm.suckless.org/patches/statuscmd/) with Luke's build of [dwmblocks](https://github.com/lukesmithxyz/dwmblocks).
 - Reads [xresources](https://dwm.suckless.org/patches/xresources/) colors/variables (i.e. works with `pywal`, etc.).
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/) hides tags with no windows.

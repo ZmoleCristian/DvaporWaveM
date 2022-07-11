@@ -306,6 +306,7 @@ static Client *swallowingclient(Window w);
 static Client *termforwin(const Client *c);
 static pid_t winpid(Window w);
 
+static void tagspawn(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -1985,6 +1986,17 @@ spawn(const Arg *arg)
 		fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]);
 		perror(" failed");
 		exit(EXIT_SUCCESS);
+	}
+}
+
+void
+tagspawn(const Arg *arg)
+{
+	for (int i=0; i<LENGTH(tags); ++i) {
+		if (selmon->tagset[selmon->seltags] & (1<<i)) {
+			const Arg a = {.v = tagcommands[i]};
+			spawn(&a);
+		}
 	}
 }
 
