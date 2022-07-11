@@ -54,7 +54,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = {"", "", "🗪", "", "懶", "", "7", "8", "9"};
+static const char *tags[] = {"", "", "🗪", "", "懶", "", "7", "8", "9"};
 
 static const Rule rules[] = {
         /* xprop(1):
