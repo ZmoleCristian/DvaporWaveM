@@ -15,7 +15,7 @@ static const int user_bh = 44;        /* 0 means that dwm will calculate bar hei
 static unsigned int snap = 5;       /* snap pixel */
 static unsigned int gappih = 10;       /* horiz inner gap between windows */
 static unsigned int gappiv = 15;       /* vert inner gap between windows */
-static unsigned int gappoh = 5;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappoh = 25;       /* horiz outer gap between windows and screen edge */
 static unsigned int gappov = 25;       /* vert outer gap between windows and screen edge */
 static int swallowfloating = 0;        /* 1 means swallow floating windows by default */
 static int smartgaps = 0;        /* 1 means no outer gap when there is only one window */
@@ -25,10 +25,10 @@ static int topbar = 0;        /* 0 means bottom bar */
 
 static char *fonts[] = {
         "terminus:size=16:style=Bold",
-        "Ubuntu Mono Nerd Font:size=30",
-        "Font Awesome 6 Free:style=Regular:pixelsize=32:antialias=true:autohint=true",
-        "Font Awesome 6 Brands:pixelsize=32:antialias=true:autohint=true",
-        "Font Awesome:style=Regular:pixelsize=32:antialias=true:autohint=true",
+        "Ubuntu Mono Nerd Font:size=22",
+        "Font Awesome 6 Free:style=Regular:pixelsize=22:antialias=true:autohint=true",
+        "Font Awesome 6 Brands:pixelsize=22:antialias=true:autohint=true",
+        "Font Awesome:style=Regular:pixelsize=22:antialias=true:autohint=true",
 };
 
 static char normbgcolor[] = "#51ff0d";
@@ -56,7 +56,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = {"", "", "🗪", "", "懶", "", "7", "8", "9"};
+static const char *tags[] = {"", "", "🗪", "", "懶", "", "", "", ""};
 
 static const Rule rules[] = {
         /* xprop(1):
