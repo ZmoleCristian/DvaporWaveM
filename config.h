@@ -15,7 +15,7 @@ static const int user_bh = 44;        /* 0 means that dwm will calculate bar hei
 static unsigned int snap = 5;       /* snap pixel */
 static unsigned int gappih = 10;       /* horiz inner gap between windows */
 static unsigned int gappiv = 15;       /* vert inner gap between windows */
-static unsigned int gappoh = 25;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappoh = 20;       /* horiz outer gap between windows and screen edge */
 static unsigned int gappov = 25;       /* vert outer gap between windows and screen edge */
 static int swallowfloating = 0;        /* 1 means swallow floating windows by default */
 static int smartgaps = 0;        /* 1 means no outer gap when there is only one window */
@@ -82,6 +82,7 @@ static int resizehints = 0;    /* 1 means respect size hints in tiled resizals *
 
 static const Layout layouts[] = {
         /* symbol     arrange function */
+
         {"[]=",  tile},            /* Default: Master on left, slaves on right */
         {"TTT",  bstack},        /* Master on top, slaves on bottom */
 
