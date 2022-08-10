@@ -3,7 +3,7 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "brave"
+#define BROWSER "librewolf"
 
 /* appearance */
 static const int vertpad = 10;       /* vertical padding of bar */
