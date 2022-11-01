@@ -3,7 +3,7 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "librewolf"
+#define BROWSER "brave"
 
 /* appearance */
 static const int vertpad = 10;       /* vertical padding of bar */
@@ -25,7 +25,6 @@ static int topbar = 0;        /* 0 means bottom bar */
 
 static char *fonts[] = {
         "terminus:size=16:style=Bold",
-        "Ubuntu Mono Nerd Font:size=22",
         "Font Awesome 6 Free:style=Regular:pixelsize=22:antialias=true:autohint=true",
         "Font Awesome 6 Brands:pixelsize=22:antialias=true:autohint=true",
         "Font Awesome:style=Regular:pixelsize=22:antialias=true:autohint=true",
@@ -360,3 +359,4 @@ static Button buttons[] = {
         {ClkTagBar, 0, Button5, shiftview, {.i = 1}},
         {ClkRootWin, 0, Button2, togglebar, {0}},
 };
+
