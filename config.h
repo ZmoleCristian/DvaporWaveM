@@ -3,7 +3,7 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "brave"
+#define BROWSER "firefox"
 
 /* appearance */
 static const int vertpad = 10;       /* vertical padding of bar */
@@ -55,7 +55,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = {"", "", "🗪", "", "懶", "", "", "", ""};
+static const char *tags[] = {"", "", "🗪", "", "", "", "", "", ""};
 
 static const Rule rules[] = {
         /* xprop(1):
@@ -157,8 +157,9 @@ static Key keys[] = {
         STACKKEYS(MODKEY, focus)
         STACKKEYS(MODKEY | ShiftMask, push)
         /* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
-        {MODKEY, XK_grave, spawn, {.v = (const char *[]) {"dmenuunicode", NULL}}},
         /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
+        {MODKEY, XK_grave, spawn, {.v = (const char *[]) {"dmenuunicode", NULL}}},
+        {MODKEY, XK_minus, spawn, {.v = (const char *[]) {"dmenudiacritice", NULL}}},
 
         TAGKEYS(XK_1, 0)
         TAGKEYS(XK_2, 1)
@@ -172,7 +173,6 @@ static Key keys[] = {
         {MODKEY | ControlMask, XK_Return, tagspawn, {0}},
         {MODKEY, XK_0, view, {.ui = ~0}},
         {MODKEY | ShiftMask, XK_0, tag, {.ui = ~0}},
-        {MODKEY, XK_minus, spawn, SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)")},
         {MODKEY | ShiftMask, XK_minus, spawn, SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)")},
         {MODKEY, XK_equal, spawn, SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)")},
         {MODKEY | ShiftMask, XK_equal, spawn, SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)")},
