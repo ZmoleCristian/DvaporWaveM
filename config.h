@@ -8,15 +8,15 @@
 /* appearance */
 static const int vertpad = 0;       /* vertical padding of bar */
 static const int sidepad = 0;       /* horizontal padding of bar */
-static unsigned int borderpx = 4;        /* border pixel of windows */
+static unsigned int borderpx = 3;        /* border pixel of windows */
 static const unsigned int fborderpx = 0;        /* border pixel of floating windows */
 
-static const int user_bh = 35;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh = 0;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static unsigned int snap = 5;       /* snap pixel */
-static unsigned int gappih = 15;       /* horiz inner gap between windows */
-static unsigned int gappiv = 20;       /* vert inner gap between windows */
-static unsigned int gappoh = 15;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov = 20;       /* vert outer gap between windows and screen edge */
+static unsigned int gappih = 10;       /* horiz inner gap between windows */
+static unsigned int gappiv = 10;       /* vert inner gap between windows */
+static unsigned int gappoh = 25;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov = 21;       /* vert outer gap between windows and screen edge */
 static int swallowfloating = 0;        /* 1 means swallow floating windows by default */
 static int smartgaps = 0;        /* 1 means no outer gap when there is only one window */
 static int showbar = 1;        /* 0 means no bar */
@@ -24,15 +24,17 @@ static int topbar = 0;        /* 0 means bottom bar */
 
 
 static char *fonts[] = {
-        "terminus:size=16:style=Bold",
+        "terminus:size=12:style=Bold",
         "Font Awesome 6 Free:style=Regular:pixelsize=22:antialias=true:autohint=true",
         "Font Awesome 6 Brands:pixelsize=22:antialias=true:autohint=true",
         "Font Awesome:style=Regular:pixelsize=22:antialias=true:autohint=true",
 };
 
+
+
 static char normbgcolor[] = "#000000";
 static char normbordercolor[] = "#1fffff";
-static char normfgcolor[] = "#1fffff";
+static char normfgcolor[] = "#f9ac53";
 static char selfgcolor[] = "#4c0be3";
 static char selbordercolor[] = "#4c0be3";
 static char selbgcolor[] = "#000000";
@@ -162,7 +164,6 @@ static Key keys[] = {
         /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
         {MODKEY, XK_grave, spawn, {.v = (const char *[]) {"dmenuunicode", NULL}}},
         {MODKEY, XK_minus, spawn, {.v = (const char *[]) {"dmenudiacritice", NULL}}},
-
         TAGKEYS(XK_1, 0)
         TAGKEYS(XK_2, 1)
         TAGKEYS(XK_3, 2)
@@ -188,7 +189,8 @@ static Key keys[] = {
         {MODKEY, XK_w, spawn, {.v = (const char *[]) {BROWSER, NULL}}},
         {MODKEY | ShiftMask, XK_w, spawn, {.v = (const char *[]) {TERMINAL, "-e", "sudo", "nmtui", NULL}}},
         {MODKEY, XK_e, spawn, SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook")},
-        {MODKEY | ShiftMask, XK_e, spawn, SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook")},
+        {MODKEY | ShiftMask, XK_e, spawn,
+                SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook")},
         {MODKEY, XK_r, spawn, {.v = (const char *[]) {TERMINAL, "-e", "lfub", NULL}}},
         {MODKEY | ShiftMask, XK_r, spawn, {.v = (const char *[]) {TERMINAL, "-e", "htop", NULL}}},
         {MODKEY, XK_t, setlayout, {.v = &layouts[0]}}, /* tile */
@@ -208,28 +210,39 @@ static Key keys[] = {
         {MODKEY, XK_bracketright, spawn, {.v = (const char *[]) {"mpc", "seek", "+10", NULL}}},
         {MODKEY | ShiftMask, XK_bracketright, spawn, {.v = (const char *[]) {"mpc", "seek", "+60", NULL}}},
         {MODKEY, XK_backslash, view, {0}},
+        /* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
+
         {MODKEY, XK_a, togglegaps, {0}},
         {MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
         {MODKEY, XK_s, togglesticky, {0}},
+        /* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") }, */
         {MODKEY, XK_d, spawn, {.v = (const char *[]) {"dmenu_run", NULL}}},
-        {MODKEY, XK_n, spawn, {.v = (const char *[]) {"neovide", NULL}}},
         {MODKEY | ShiftMask, XK_d, spawn, {.v = (const char *[]) {"passmenu", NULL}}},
         {MODKEY, XK_f, togglefullscr, {0}},
         {MODKEY | ShiftMask, XK_f, setlayout, {.v = &layouts[8]}},
         {MODKEY, XK_g, shiftview, {.i = -1}},
         {MODKEY | ShiftMask, XK_g, shifttag, {.i = -1}},
         {MODKEY, XK_h, setmfact, {.f = -0.05}},
+        /* J and K are automatically bound above in STACKEYS */
         {MODKEY, XK_l, setmfact, {.f = +0.05}},
         {MODKEY, XK_semicolon, shiftview, {.i = 1}},
         {MODKEY | ShiftMask, XK_semicolon, shifttag, {.i = 1}},
         {MODKEY, XK_apostrophe, togglescratch, {.ui = 1}},
+        /* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") }, */
         {MODKEY | ShiftMask, XK_apostrophe, togglesmartgaps, {0}},
         {MODKEY, XK_Return, spawn, {.v = termcmd}},
         {MODKEY | ShiftMask, XK_Return, togglescratch, {.ui = 0}},
+
         {MODKEY, XK_z, incrgaps, {.i = +3}},
+        /* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("") }, */
         {MODKEY, XK_x, incrgaps, {.i = -3}},
+        /* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("") }, */
         {MODKEY, XK_c, spawn, {.v = (const char *[]) {TERMINAL, "-e", "profanity", NULL}}},
+        /* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("") }, */
+        /* V is automatically bound above in STACKKEYS */
         {MODKEY, XK_b, togglebar, {0}},
+        /* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
+        {MODKEY, XK_n, spawn, {.v = (const char *[]) {TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL}}},
         {MODKEY | ShiftMask, XK_n, spawn, SHCMD(TERMINAL " -e newsboat ; pkill -RTMIN+6 dwmblocks")},
         {MODKEY, XK_m, spawn, {.v = (const char *[]) {TERMINAL, "-e", "ncmpcpp", NULL}}},
         {MODKEY | ShiftMask, XK_m, spawn, SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)")},
@@ -269,6 +282,7 @@ static Key keys[] = {
         {0, XK_Print, spawn, SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png")},
         {ShiftMask, XK_Print, spawn, {.v = (const char *[]) {"maimpick", NULL}}},
         {ShiftMask, XK_F1, spawn, SHCMD("copyadd")},
+        {ShiftMask, XK_Home, spawn, {.v = (const char*[]){ "xdotool", "key", "Page_Down", NULL } } },
         {MODKEY, XK_Print, spawn, {.v = (const char *[]) {"dmenurecord", NULL}}},
         {MODKEY | ShiftMask, XK_Print, spawn, {.v = (const char *[]) {"dmenurecord", "kill", NULL}}},
         {MODKEY, XK_Delete, spawn, {.v = (const char *[]) {"dmenurecord", "kill", NULL}}},
