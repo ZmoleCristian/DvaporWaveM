@@ -1,22 +1,22 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 #define BROWSER "firefox"
 
 /* appearance */
 static const int vertpad = 0;       /* vertical padding of bar */
 static const int sidepad = 0;       /* horizontal padding of bar */
-static unsigned int borderpx = 4;        /* border pixel of windows */
+static unsigned int borderpx = 3;        /* border pixel of windows */
 static const unsigned int fborderpx = 0;        /* border pixel of floating windows */
 
-static const int user_bh = 35;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh = 0;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static unsigned int snap = 5;       /* snap pixel */
-static unsigned int gappih = 15;       /* horiz inner gap between windows */
-static unsigned int gappiv = 20;       /* vert inner gap between windows */
-static unsigned int gappoh = 15;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov = 20;       /* vert outer gap between windows and screen edge */
+static unsigned int gappih = 10;       /* horiz inner gap between windows */
+static unsigned int gappiv = 10;       /* vert inner gap between windows */
+static unsigned int gappoh = 25;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov = 21;       /* vert outer gap between windows and screen edge */
 static int swallowfloating = 0;        /* 1 means swallow floating windows by default */
 static int smartgaps = 0;        /* 1 means no outer gap when there is only one window */
 static int showbar = 1;        /* 0 means no bar */
@@ -24,20 +24,20 @@ static int topbar = 0;        /* 0 means bottom bar */
 
 
 static char *fonts[] = {
-        "terminus:size=16:style=Bold",
+        "terminus:size=12:style=Bold",
         "Font Awesome 6 Free:style=Regular:pixelsize=22:antialias=true:autohint=true",
         "Font Awesome 6 Brands:pixelsize=22:antialias=true:autohint=true",
         "Font Awesome:style=Regular:pixelsize=22:antialias=true:autohint=true",
 };
 
+
+
 static char normbgcolor[] = "#000000";
 static char normbordercolor[] = "#1fffff";
-static char normfgcolor[] = "#1fffff";
+static char normfgcolor[] = "#f9ac53";
 static char selfgcolor[] = "#4c0be3";
 static char selbordercolor[] = "#4c0be3";
 static char selbgcolor[] = "#000000";
-
-
 static char *colors[][3] = {
         /*               fg           bg           border   */
         [SchemeNorm] = {normfgcolor, normbgcolor, normbordercolor},
@@ -164,7 +164,6 @@ static Key keys[] = {
         /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
         {MODKEY, XK_grave, spawn, {.v = (const char *[]) {"dmenuunicode", NULL}}},
         {MODKEY, XK_minus, spawn, {.v = (const char *[]) {"dmenudiacritice", NULL}}},
-
         TAGKEYS(XK_1, 0)
         TAGKEYS(XK_2, 1)
         TAGKEYS(XK_3, 2)
@@ -283,6 +282,7 @@ static Key keys[] = {
         {0, XK_Print, spawn, SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png")},
         {ShiftMask, XK_Print, spawn, {.v = (const char *[]) {"maimpick", NULL}}},
         {ShiftMask, XK_F1, spawn, SHCMD("copyadd")},
+        {ShiftMask, XK_Home, spawn, {.v = (const char*[]){ "xdotool", "key", "Page_Down", NULL } } },
         {MODKEY, XK_Print, spawn, {.v = (const char *[]) {"dmenurecord", NULL}}},
         {MODKEY | ShiftMask, XK_Print, spawn, {.v = (const char *[]) {"dmenurecord", "kill", NULL}}},
         {MODKEY, XK_Delete, spawn, {.v = (const char *[]) {"dmenurecord", "kill", NULL}}},
